@@ -1,25 +1,22 @@
 import os, shutil
-#from dirsync import sync
+from dsFile import dsFile
+from dsDirectory import dsDirectory
 
-path = r'C:\temp\fromdir'
-copyto = r'C:\temp\todir'
+from utils import io
+
+fromdir_path = r'C:\temp\fromdir'
+todir_path = r'C:\temp\todir'
 
 #sync(path, copyto, 'sync', verbose=True, ctime=True)
 
 def main():
-    index_dir(path)
+    
+    fd = dsDirectory(fromdir_path)
+    fd.update()
 
-def index_dir(path) -> list:
-    files=os.listdir(path)
-    files.sort()
-
-    for f in files:
-        src = path+'\\'+f
-        if os.path.isfile(src) == True:
-            print("Fil: %s [%s]" % (src, os.stat(src).st_mtime))
-        else:
-            print("Dir: %s" % src)
-
+    fd.print()
+    io.write_json("c:\\temp\\folder.json", fd)
+    
 
 if __name__ == "__main__":
     main()

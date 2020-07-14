@@ -1,11 +1,13 @@
 import os, hashlib
 
 class dsFile:
-    def __init__(self, path):
+    def __init__(self, path, new_base_path = ""):
         self.path = path
-    def md5(fname):
-        hash_md5 = hashlib.md5()
-        with open(fname, "rb") as f:
-            for chunk in iter(lambda: f.read(4096), b""):
-                hash_md5.update(chunk)
-        return hash_md5.hexdigest()
+        self.md5 = ""
+        self.basepath = new_base_path
+    
+    # def __hash__(self) -> str:
+    #     return self.md5
+
+    def get_relative_path(self) -> str:
+            return self.path.replace(self.basepath, '')
