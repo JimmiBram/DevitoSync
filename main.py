@@ -11,12 +11,19 @@ todir_path = r'C:\temp\todir'
 
 def main():
     
-    fd = dsDirectory(fromdir_path)
-    fd.update()
+    # fd = dsDirectory(fromdir_path)
+    # fd.update()
 
-    fd.print()
-    io.write_json("c:\\temp\\folder.json", fd)
+    # fd.print()
+    # io.write_json("c:\\temp\\folder.json", fd.serialize)
+
+    f = dsFile('C:\\Temp\\fromdir\\filmtitler.html', 'C:\\Temp\\fromdir')
+    f.md5 = "#KAJSDKJASD"
     
 
+    d = dsDirectory('C:\\Temp\\fromdir')
+    d.files.append(f)
+    d.to_dictionary()
+    print(d.to_dictionary())
 if __name__ == "__main__":
     main()
