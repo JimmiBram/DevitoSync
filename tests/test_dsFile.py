@@ -1,4 +1,5 @@
 import unittest
+from testfixtures import tempdir, compare
 from dsFile import dsFile
 
 class test_dsFile(unittest.TestCase):
